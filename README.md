@@ -206,7 +206,7 @@ pip install -r requirements.txt
 
 ## How to Run
 
-### Basic Usage
+### Option 1: Interactive CLI (Terminal)
 
 ```bash
 python main.py
@@ -218,7 +218,7 @@ The application will:
 3. Send to Ollama/qwen3:8b for analysis
 4. Display classification results with risk level and explanation
 
-### Example Session
+**Example Session**
 
 ```
 ======================================================================
@@ -249,6 +249,38 @@ Pre-filter Alert:
   (Note: Pre-filtering found suspicious patterns, but LLM made the final decision)
 ----------------------------------------------------------------------
 ```
+
+### Option 2: Streamlit Web Dashboard
+
+First, install Streamlit:
+
+```bash
+pip install streamlit
+```
+
+Then run the dashboard:
+
+```bash
+streamlit run app.py
+```
+
+This will:
+1. Open a web browser at `http://localhost:8501`
+2. Display the **Prompt Injection Detection Dashboard**
+3. Provide:
+   - **Attack Category Guide** in the sidebar
+   - **Text area** for prompt input
+   - **Analyze button** for classification
+   - **Visual results** with color-coded warnings
+   - **Risk metrics** and attack type cards
+   - **Pre-filter hints** showing matched patterns
+
+**Dashboard Features**:
+- ✅ Green box for benign prompts
+- ⚠️ Red box with warning for malicious prompts
+- 📊 Metric cards showing risk level and attack type
+- 🔍 Pre-filter hints explaining which patterns were detected
+- 📌 Sidebar with expandable attack category descriptions
 
 ---
 
@@ -287,7 +319,8 @@ Hi, how are you today?
 
 ```
 PromptProject/
-├── main.py              # Entry point and CLI interface
+├── main.py              # CLI interface (terminal-based)
+├── app.py               # Streamlit dashboard (web-based)
 ├── classifier.py        # Orchestration and coordination
 ├── models.py            # Pydantic validation models
 ├── filter.py            # Lightweight keyword filtering
