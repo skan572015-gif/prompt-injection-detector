@@ -160,9 +160,9 @@ def query_llm(
             {
                 "role": "user",
                 "content": (
-                    "Classify this prompt using semantic meaning.\n"
+                    "Classify this prompt using semantic meaning ONLY.\n"
                     f"Pre-filter regex hint categories: {hint_text}\n"
-                    "These regex hints are contextual signals only and must not directly determine the final attack_type.\n"
+                    "IMPORTANT: Pre-filter regex matches are only hints. Do NOT use them as the final label. The final attack_type must be based ONLY on semantic meaning and priority rules.\n"
                     "Priority reminders:\n"
                     "- Prefer payload_splitting over instruction_override when the malicious instruction uses variables, concatenation, decoding, reconstruction, or staged first-then / step-by-step structure.\n"
                     "- Prefer indirect_injection over instruction_override when malicious instructions are embedded inside another task such as summarize, translate, analyze, process, or read.\n\n"
