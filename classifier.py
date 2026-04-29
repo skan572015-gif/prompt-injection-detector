@@ -47,7 +47,10 @@ def classify_prompt(user_input: str) -> tuple[ClassificationResult, PreFilterRes
     
     # Step 2: Query LLM
     try:
-        llm_response = query_llm(user_input)
+        llm_response = query_llm(
+            user_input,
+            prefilter_hints=pre_filter_result.matched_patterns,
+        )
     except OllamaConnectionError as e:
         raise ClassificationError(f"Connection error: {str(e)}")
     except InvalidModelError as e:
